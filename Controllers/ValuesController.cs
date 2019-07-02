@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ShopApi.Controllers
 {
-	[Route("api/[controller]")]
+	[Route("api/Values")]
 	[ApiController]
 	public class ValuesController : ControllerBase
 	{
