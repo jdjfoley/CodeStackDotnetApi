@@ -17,53 +17,37 @@ namespace ShopApi.Controllers
 			db = database;
 		}
 
-		[HttpGet] public ActionResult<IList<string>> MockLowInventory() {
-			return db.MockGetNameListOfLowInventory().ToList();
-		}
+		#region EndpointsUsingMock
+		[HttpGet] public ActionResult<IList<string>> MockLowInventory()
+			=> db.MockGetNameListOfLowInventory().ToList();
 
-		[HttpGet] public ActionResult<Inventory> MockGetItemByName([FromQuery] string name) {
-			return db.MockGetItemByName(name);
-		}
+		[HttpGet] public ActionResult<Inventory> MockGetItemByName([FromQuery] string name)
+			=> db.MockGetItemByName(name);
+		#endregion
 
 		// GET api/inventory/list
 		[HttpGet]
 		public ActionResult<IEnumerable<Inventory>> List()
-		{
-			return db.GetList().ToList();
-		}
+			=> db.GetList().ToList();
 
 		// GET api/inventory/get/5
 		[HttpGet("{id}")]
 		public ActionResult<Inventory> Get(int id)
-		{
-			return db.GetInventoryItem(id);
-		}
-
-
-
-
-
-
+			=>db.GetInventoryItem(id);
 
 		// POST api/inventory/insert
 		[HttpPost]
 		public ActionResult<int> Insert([FromBody] Inventory value)
-		{
-			return db.Insert(value);
-		}
+			=> db.Insert(value);
 
 		// POST api/inventory/update
 		[HttpPost]
 		public ActionResult<bool> Update([FromBody] Inventory value)
-		{
-			return db.Update(value);
-		}
+			=> db.Update(value);
 
 		// DELETE api/inventory/delete/1
 		[HttpDelete("{id}")]
 		public ActionResult<int> Delete(int id)
-		{
-			return db.Delete(id);
-		}
+			=> db.Delete(id);
 	}
 }

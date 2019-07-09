@@ -21,6 +21,7 @@ namespace ShopApi.Services
 
 		//Context
 		private LiteCollection<Inventory> inventory;
+		private LiteCollection<Shopper> shoppers;
 
 		public DatabaseService(string dbLocation)
 		{
@@ -28,6 +29,7 @@ namespace ShopApi.Services
 			using (database)
 			{
 				inventory = database.GetCollection<Inventory>("inventory");
+				shoppers = database.GetCollection<Shopper>("shoppers");
 			}
 		}
 
@@ -59,6 +61,13 @@ namespace ShopApi.Services
 		#endregion
 
 		#region LiteDB
+
+		// INSERT INVENTORY ITEM INTO DB
+		public int Insert(Inventory item)
+		{
+			return inventory.Insert(item);
+		}
+
 		public IEnumerable<Inventory> GetList()
 		{
 			return inventory.FindAll();
@@ -67,11 +76,6 @@ namespace ShopApi.Services
 		public Inventory GetInventoryItem(int id)
 		{
 			return inventory.Find(x => x.Id == id).FirstOrDefault();
-		}
-
-		public int Insert(Inventory item)
-		{
-			return inventory.Insert(item);
 		}
 
 		public bool Update(Inventory item)

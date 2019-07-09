@@ -13,7 +13,7 @@ namespace ShopApi.Models
 		public int Quantity { get; set; }
 		[NotMapped] public bool HasDescription => Description != null && Description != "";
 
-		public Inventory(){}
+		public Inventory() {}
 
 		public Inventory(int id, string desc, string Name, double price, string sku, string loc, int quantity) {
 			Id = id;
