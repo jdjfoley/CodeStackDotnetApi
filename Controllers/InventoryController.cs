@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using ShopApi.Models;
+using ShopApi.Services;
 
 namespace ShopApi.Controllers
 {
@@ -13,6 +15,14 @@ namespace ShopApi.Controllers
 		public InventoryController(DatabaseService database)
 		{
 			db = database;
+		}
+
+		[HttpGet] public ActionResult<IList<string>> MockLowInventory() {
+			return db.MockGetNameListOfLowInventory().ToList();
+		}
+
+		[HttpGet] public ActionResult<Inventory> MockGetItemByName([FromQuery] string name) {
+			return db.MockGetItemByName(name);
 		}
 
 		// GET api/inventory/list
@@ -28,6 +38,12 @@ namespace ShopApi.Controllers
 		{
 			return db.GetInventoryItem(id);
 		}
+
+
+
+
+
+
 
 		// POST api/inventory/insert
 		[HttpPost]
