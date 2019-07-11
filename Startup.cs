@@ -19,8 +19,8 @@ namespace ShopApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-						services.AddSingleton(new DatabaseService(@"../Database/shopapi.db")); // I ADDED THIS
+						services.AddSingleton(new DatabaseService(@"Filename=../Database/shopapi.db;Mode=Shared")); // I ADDED THIS
+		// --> (@"Filename=../Database/shopapi.db;Mode=Exclusive")); // You will add this
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
